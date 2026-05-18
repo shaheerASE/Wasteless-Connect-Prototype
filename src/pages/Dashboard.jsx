@@ -52,11 +52,11 @@ export default function Dashboard({ posts }) {
         {summaryCards.map(({ label, value, icon }) => (
           <div
             key={label}
-            className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5"
+            className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-5"
           >
-            <div className="text-2xl mb-2">{icon}</div>
-            <div className="text-3xl font-extrabold text-green-700">{value}</div>
-            <div className="text-xs text-gray-500 mt-1 font-medium uppercase tracking-wide">
+            <div className="text-xl sm:text-2xl mb-2">{icon}</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-green-700">{value}</div>
+            <div className="text-xs text-gray-500 mt-1 font-medium uppercase tracking-wide leading-tight">
               {label}
             </div>
           </div>

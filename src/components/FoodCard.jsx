@@ -15,7 +15,7 @@ export default function FoodCard({ post }) {
   return (
     <div
       onClick={() => navigate(`/track/${post.id}`)}
-      className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer p-5 flex flex-col gap-3"
+      className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] active:shadow-sm transition-all duration-200 cursor-pointer p-4 sm:p-5 flex flex-col gap-3"
     >
       <div className="flex items-start justify-between gap-2">
         <div>

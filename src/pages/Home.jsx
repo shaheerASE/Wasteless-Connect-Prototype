@@ -100,15 +100,15 @@ export default function Home() {
 
       {/* Stats */}
       <section className="bg-green-800 text-white py-10 px-4">
-        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-6 text-center">
+        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-3 sm:gap-8 text-center">
           {[
             { value: '7', label: 'Active Listings' },
             { value: '3', label: 'Donor Types' },
-            { value: '100%', label: 'Free to Use' },
+            { value: '100%', label: 'Free' },
           ].map(({ value, label }) => (
             <div key={label}>
-              <div className="text-3xl font-extrabold text-green-300">{value}</div>
-              <div className="text-sm text-green-200 mt-1">{label}</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-green-300">{value}</div>
+              <div className="text-xs sm:text-sm text-green-200 mt-1 leading-tight">{label}</div>
             </div>
           ))}
         </div>

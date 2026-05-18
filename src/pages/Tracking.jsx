@@ -59,17 +59,17 @@ export default function Tracking({ posts, setPosts }) {
     <div className="max-w-2xl mx-auto px-4 py-10">
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-1 text-sm text-green-700 hover:text-green-900 mb-6 group"
+        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm text-green-700 font-medium hover:text-green-900 hover:bg-green-50 active:bg-green-100 mb-6 transition-colors"
       >
-        <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
-        Back
+        <span>←</span>
+        Back to Listings
       </button>
 
       {/* Info card */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-5">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-6 mb-5">
         <div className="flex items-start justify-between gap-3 mb-5">
-          <div>
-            <h1 className="text-2xl font-extrabold text-gray-800 leading-tight">
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-gray-800 leading-tight">
               {post.donorName}
             </h1>
             <span className="text-xs text-gray-400 font-mono mt-0.5 block">ID: {post.id}</span>
@@ -77,7 +77,7 @@ export default function Tracking({ posts, setPosts }) {
           <StatusBadge status={post.status} />
         </div>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
           {[
             { label: 'Food Type',       value: post.foodType },
             { label: 'Quantity',        value: post.quantity },

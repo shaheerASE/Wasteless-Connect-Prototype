@@ -65,7 +65,7 @@ export default function PostFood({ setPosts }) {
   }
 
   const inputClass = (field) =>
-    `w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition ${
+    `w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition min-h-[44px] ${
       errors[field]
         ? 'border-red-400 bg-red-50'
         : 'border-gray-200 bg-white focus:border-green-400'

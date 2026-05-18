@@ -68,7 +68,7 @@ export default function Listings({ posts, onReset }) {
             <button
               key={s}
               onClick={() => setFilter(s)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-150 ${filterBtnClass(s)}`}
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-colors duration-150 ${filterBtnClass(s)}`}
             >
               {s}
             </button>
@@ -82,13 +82,13 @@ export default function Listings({ posts, onReset }) {
             <button
               key={t}
               onClick={() => setTypeFilter(t)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-150 ${
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-colors duration-150 ${
                 typeFilter === t
                   ? 'bg-green-600 text-white font-semibold shadow-sm'
                   : 'bg-white text-gray-600 hover:bg-green-50 border border-gray-200'
               }`}
             >
-              {t}
+              {t === 'University' ? '🎓 ' : t === 'Restaurant' ? '🍴 ' : t === 'Dhaba' ? '🛺 ' : ''}{t}
             </button>
           ))}
         </div>
