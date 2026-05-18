@@ -17,20 +17,22 @@ const STAGE_DESC = {
 export default function StatusTimeline({ currentStatus }) {
   const currentIndex = STAGES.indexOf(currentStatus)
 
-  const progressPercent = currentIndex === 0
+  // Circles sit in equal flex-1 columns, so their centers land at
+  // 12.5%, 37.5%, 62.5%, 87.5%. The track spans first→last center (75% wide).
+  const progressFraction = currentIndex <= 0
     ? 0
-    : (currentIndex / (STAGES.length - 1)) * 100
+    : currentIndex / (STAGES.length - 1)
 
   return (
     <div className="w-full">
       {/* Desktop: horizontal */}
-      <div className="hidden sm:flex items-start justify-between relative px-4">
+      <div className="hidden sm:flex items-start justify-between relative">
         {/* Background track */}
-        <div className="absolute top-5 left-8 right-8 h-0.5 bg-gray-200 z-0" />
+        <div className="absolute top-5 left-[12.5%] right-[12.5%] h-0.5 bg-gray-200 z-0" />
         {/* Green progress fill */}
         <div
-          className="absolute top-5 left-8 h-0.5 bg-green-500 z-0 transition-all duration-700 ease-in-out"
-          style={{ width: `calc(${progressPercent}% * (100% - 4rem) / 100)` }}
+          className="absolute top-5 left-[12.5%] h-0.5 bg-green-500 z-0 transition-all duration-700 ease-in-out"
+          style={{ width: `calc(75% * ${progressFraction})` }}
         />
 
         {STAGES.map((stage, index) => {

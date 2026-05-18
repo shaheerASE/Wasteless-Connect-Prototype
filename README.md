@@ -27,8 +27,9 @@ Open http://localhost:5173 in your browser.
 **Posted → Confirmed → On the way → Picked up**
 
 Use the **Advance Status** button on any tracking page to move a post through
-its lifecycle. Status changes live in React state (refreshing the page resets
-to seed data).
+its lifecycle. New posts and status changes persist in the browser
+(`localStorage`), so they survive a page refresh. Use the **Reset demo data**
+link on the Listings page to restore the original 7 seed posts.
 
 ## Tech Stack
 

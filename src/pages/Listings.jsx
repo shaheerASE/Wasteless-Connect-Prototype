@@ -4,8 +4,15 @@ import FoodCard from '../components/FoodCard'
 
 const ALL_STATUSES = ['All', 'Posted', 'Confirmed', 'On the way', 'Picked up']
 
-export default function Listings({ posts }) {
+export default function Listings({ posts, onReset }) {
   const [filter, setFilter] = useState('All')
+
+  function handleReset() {
+    if (window.confirm('Reset all posts back to the original demo data?')) {
+      onReset()
+      setFilter('All')
+    }
+  }
 
   const filtered = filter === 'All'
     ? posts
@@ -23,6 +30,13 @@ export default function Listings({ posts }) {
           <h1 className="text-3xl font-extrabold text-gray-800">Food Listings</h1>
           <p className="text-gray-500 text-sm mt-1">
             {posts.length} total post{posts.length !== 1 ? 's' : ''} — click any card to track.
+            {' '}
+            <button
+              onClick={handleReset}
+              className="text-green-600 underline hover:text-green-800 font-medium"
+            >
+              Reset demo data
+            </button>
           </p>
         </div>
 
