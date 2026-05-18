@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import PostFood from './pages/PostFood'
 import Listings from './pages/Listings'
 import Tracking from './pages/Tracking'
+import Dashboard from './pages/Dashboard'
+import About from './pages/About'
 import initialPosts from './data/foodPosts.json'
 
 const STORAGE_KEY = 'wasteless-connect-posts'
@@ -46,6 +48,8 @@ export default function App() {
           <Route path="/post" element={<PostFood setPosts={setPosts} />} />
           <Route path="/listings" element={<Listings posts={posts} onReset={resetPosts} />} />
           <Route path="/track/:id" element={<Tracking posts={posts} setPosts={setPosts} />} />
+          <Route path="/dashboard" element={<Dashboard posts={posts} />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
       <footer className="bg-green-900 text-green-300 text-center py-4 text-sm">

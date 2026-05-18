@@ -3,20 +3,33 @@ import { Link } from 'react-router-dom'
 import FoodCard from '../components/FoodCard'
 
 const ALL_STATUSES = ['All', 'Posted', 'Confirmed', 'On the way', 'Picked up']
+const ALL_TYPES = ['All', 'University', 'Restaurant', 'Dhaba']
 
 export default function Listings({ posts, onReset }) {
   const [filter, setFilter] = useState('All')
+  const [typeFilter, setTypeFilter] = useState('All')
+  const [query, setQuery] = useState('')
 
   function handleReset() {
     if (window.confirm('Reset all posts back to the original demo data?')) {
       onReset()
       setFilter('All')
+      setTypeFilter('All')
+      setQuery('')
     }
   }
 
-  const filtered = filter === 'All'
-    ? posts
-    : posts.filter(p => p.status === filter)
+  const q = query.trim().toLowerCase()
+  const filtered = posts.filter(p => {
+    const matchesStatus = filter === 'All' || p.status === filter
+    const matchesType = typeFilter === 'All' || p.donorType === typeFilter
+    const matchesQuery =
+      !q ||
+      p.donorName.toLowerCase().includes(q) ||
+      p.foodType.toLowerCase().includes(q) ||
+      p.location.toLowerCase().includes(q)
+    return matchesStatus && matchesType && matchesQuery
+  })
 
   const filterBtnClass = (label) =>
     filter === label
@@ -40,6 +53,16 @@ export default function Listings({ posts, onReset }) {
           </p>
         </div>
 
+        <input
+          type="text"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Search donor, food, or location…"
+          className="w-full sm:w-72 px-4 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400"
+        />
+      </div>
+
+      <div className="mb-8 flex flex-col gap-3">
         <div className="flex flex-wrap gap-2">
           {ALL_STATUSES.map(s => (
             <button
@@ -51,17 +74,39 @@ export default function Listings({ posts, onReset }) {
             </button>
           ))}
         </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide mr-1">
+            Type
+          </span>
+          {ALL_TYPES.map(t => (
+            <button
+              key={t}
+              onClick={() => setTypeFilter(t)}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-150 ${
+                typeFilter === t
+                  ? 'bg-green-600 text-white font-semibold shadow-sm'
+                  : 'bg-white text-gray-600 hover:bg-green-50 border border-gray-200'
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
       </div>
 
       {filtered.length === 0 ? (
         <div className="text-center py-20 text-gray-400">
           <div className="text-4xl mb-3">🔍</div>
-          <p className="text-lg font-medium">No posts with status "{filter}"</p>
+          <p className="text-lg font-medium">No posts match your filters</p>
           <button
-            onClick={() => setFilter('All')}
+            onClick={() => {
+              setFilter('All')
+              setTypeFilter('All')
+              setQuery('')
+            }}
             className="mt-4 text-green-600 underline text-sm"
           >
-            Clear filter
+            Clear all filters
           </button>
         </div>
       ) : (

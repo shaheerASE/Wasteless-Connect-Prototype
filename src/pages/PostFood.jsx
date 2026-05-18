@@ -103,7 +103,7 @@ export default function PostFood({ setPosts }) {
             name="donorName"
             value={form.donorName}
             onChange={handleChange}
-            placeholder="e.g. The Spice Garden"
+            placeholder="e.g. Bundu Khan"
             className={inputClass('donorName')}
           />
           {errors.donorName && <p className="text-xs text-red-500 mt-1">{errors.donorName}</p>}
@@ -136,7 +136,7 @@ export default function PostFood({ setPosts }) {
             name="foodType"
             value={form.foodType}
             onChange={handleChange}
-            placeholder="e.g. Veg Biryani, Dal Makhani + Rice"
+            placeholder="e.g. Chicken Biryani, Daal Chawal"
             className={inputClass('foodType')}
           />
           {errors.foodType && <p className="text-xs text-red-500 mt-1">{errors.foodType}</p>}
@@ -166,7 +166,7 @@ export default function PostFood({ setPosts }) {
             name="location"
             value={form.location}
             onChange={handleChange}
-            placeholder="e.g. Koramangala, Bengaluru"
+            placeholder="e.g. Gulberg, Lahore"
             className={inputClass('location')}
           />
           {errors.location && <p className="text-xs text-red-500 mt-1">{errors.location}</p>}

@@ -19,8 +19,10 @@ Open http://localhost:5173 in your browser.
 |-------|-------------|
 | `/` | Home — hero + "How it works" overview |
 | `/post` | Post surplus food (form) |
-| `/listings` | Browse all food posts with status filters |
+| `/listings` | Browse posts with search + status & donor-type filters |
 | `/track/:id` | Live tracking timeline for one post |
+| `/dashboard` | Stats overview — totals, by status, by donor type |
+| `/about` | About the platform + FAQ |
 
 ## Status Lifecycle
 
