@@ -18,6 +18,13 @@ function servingsOf(quantity) {
 export default function Dashboard({ posts }) {
   const totalPosts = posts.length
   const totalServings = posts.reduce((sum, p) => sum + servingsOf(p.quantity), 0)
+
+  const completedPosts  = posts.filter(p => p.status === 'Picked up')
+  const distServings    = completedPosts.reduce((sum, p) => sum + servingsOf(p.quantity), 0)
+  const distFamilies    = Math.round(distServings * 0.55)
+  const distShelters    = Math.round(distServings * 0.30)
+  const distCommunity   = Math.round(distServings * 0.15)
+  const distPeople      = distServings * 3
   const completed = posts.filter(p => p.status === 'Picked up').length
   const inProgress = totalPosts - completed
 
@@ -97,6 +104,55 @@ export default function Dashboard({ posts }) {
           </div>
         </div>
       </div>
+
+      {/* Community Impact — only shown when there are completed pickups */}
+      {completedPosts.length > 0 && (
+        <div className="bg-white rounded-2xl border border-green-100 shadow-sm p-6 mt-6">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xl">🌱</span>
+            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide">
+              Community Impact
+            </h2>
+          </div>
+          <p className="text-xs text-gray-400 mb-5">
+            Across {completedPosts.length} completed pickup{completedPosts.length !== 1 ? 's' : ''}
+          </p>
+
+          {/* Impact stat chips */}
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            {[
+              { icon: '🍽️', label: 'Servings',      value: distServings },
+              { icon: '👥', label: 'People Helped', value: distPeople   },
+              { icon: '📦', label: 'Completed',     value: completedPosts.length },
+            ].map(({ icon, label, value }) => (
+              <div key={label} className="bg-green-50 border border-green-100 rounded-xl p-3 sm:p-4 text-center">
+                <div className="text-base sm:text-xl mb-1">{icon}</div>
+                <div className="text-lg sm:text-2xl font-extrabold text-green-700">{value}</div>
+                <div className="text-xs text-gray-500 leading-tight mt-0.5">{label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Recipient breakdown bar */}
+          <div>
+            <div className="flex justify-between text-xs text-gray-500 mb-1.5">
+              <span>👨‍👩‍👧 Families · {distFamilies}</span>
+              <span>🏫 Shelters · {distShelters}</span>
+              <span>🍽️ Community · {distCommunity}</span>
+            </div>
+            <div className="w-full h-3 rounded-full overflow-hidden flex">
+              <div className="bg-green-500 h-full transition-all duration-700" style={{ width: '55%' }} />
+              <div className="bg-blue-400 h-full transition-all duration-700"  style={{ width: '30%' }} />
+              <div className="bg-amber-400 h-full transition-all duration-700" style={{ width: '15%' }} />
+            </div>
+            <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <span>55%</span>
+              <span>30%</span>
+              <span>15%</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="mt-10 text-center">
         <Link

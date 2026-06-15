@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import StatusBadge from '../components/StatusBadge'
 import StatusTimeline from '../components/StatusTimeline'
+import DistributionCard from '../components/DistributionCard'
 
 const STAGES = ['Posted', 'Confirmed', 'On the way', 'Picked up']
 
@@ -123,6 +124,9 @@ export default function Tracking({ posts, setPosts }) {
           </div>
         </div>
       )}
+
+      {/* Distribution indicator — only visible after pickup is complete */}
+      {isComplete && <DistributionCard post={post} />}
 
       {/* Advance status */}
       <div className="flex flex-col gap-2">
